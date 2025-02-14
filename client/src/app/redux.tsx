@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import {
   TypedUseSelectorHook,
@@ -80,12 +80,17 @@ export default function StoreProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const storeRef = useRef<AppStore>();
-  if (!storeRef.current) {
-    storeRef.current = makeStore();
-    setupListeners(storeRef.current.dispatch);
-  }
-  const persistor = persistStore(storeRef.current);
+  //AAA
+  // const storeRef = useRef<AppStore>();
+  // if (!storeRef.current) {
+  //   storeRef.current = makeStore();
+  //   setupListeners(storeRef.current.dispatch);
+  // }
+  // const persistor = persistStore(storeRef.current);
+
+  const storeRef = useRef<AppStore>(makeStore());
+  const persistor = useMemo(() => persistStore(storeRef.current), []);
+  //AAA
 
   return (
     <Provider store={storeRef.current}>

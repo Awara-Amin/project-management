@@ -16,7 +16,7 @@ const TaskCard = ({ task }: Props) => {
           <div className="flex flex-wrap">
             {task.attachments && task.attachments.length > 0 && (
               <Image
-                src={`/${task.attachments[0].fileUrl}`}
+                src={`https://pm-s3-img.s3.us-east-1.amazonaws.com/${task.attachments[0].fileUrl}`}
                 alt={task.attachments[0].fileName}
                 width={400}
                 height={200}
